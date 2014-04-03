@@ -1,0 +1,20 @@
+{
+  "name": "dynamoDbExport2Json",
+  "version": "0.0.0",
+  "description": "Convert the output format of the AWS Data Pipeline export for DynamoDB into JSON",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "aws",
+    "dynamodb",
+    "export",
+    "json"
+  ],
+  "author": "James Bloomer",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^1.18.2"
+  }
+}
