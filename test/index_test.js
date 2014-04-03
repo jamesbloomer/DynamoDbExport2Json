@@ -16,10 +16,20 @@ describe('dynamoDbExport2Json', function() {
         console.log('running tests');
     });
 
-    it('should convert file to json', function(done) {
+    it('should copy simple text file', function(done) {
         var expected = 'file contents\n';    
-        convert('test-file.txt', 'test/output.json', function(e) {
-            fs.readFile('test/output.json', 'utf8', function(e2, data) {
+        convert('simple-test-file.txt', 'test/output1.json', function(e) {
+            fs.readFile('test/output1.json', 'utf8', function(e2, data) {
+                assert.equal(data, expected);
+                return done();
+            });
+        });
+    });
+
+    it('should convert dynamodb output to json', function(done) {
+        var expected = '{}';    
+        convert('test-file.txt', 'test/output2.json', function(e) {
+            fs.readFile('test/output2.json', 'utf8', function(e2, data) {
                 assert.equal(data, expected);
                 return done();
             });
