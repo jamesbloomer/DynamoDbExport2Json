@@ -4,12 +4,14 @@ var assert = require('assert'),
 
 describe('dynamoDbExport2Json', function() {
 
-    afterEach(function(done) {
+    afterEach(function() {
         if(fs.existsSync('output.json')) {
-            fs.unlink('output.json', done);
-        } else {
-            return done();
-        }
+            fs.unlinkSync('output.json');
+        } 
+
+        if(fs.existsSync('output2.json')) {
+            fs.unlinkSync('output2.json');
+        } 
     });
 
     it('should run tests', function() {
