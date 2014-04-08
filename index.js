@@ -11,6 +11,14 @@ module.exports = function(exportFilePath, outputFilePath, done) {
         .pipe(es.replace('}', ''))
         .pipe(es.split("\n"))
         .pipe(es.mapSync(function(data) {
+           var changed = data.replace(/,(.*?):/g, ',"$1":');
+           return changed;
+        }))
+        .pipe(es.mapSync(function(data) {
+           var changed = data.replace(/^(.*?):/g, '"$1":');
+           return changed;
+        }))
+        .pipe(es.mapSync(function(data) {
             if(data.length > 0) {
                 return '{' + data + '}';
             }

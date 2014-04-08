@@ -1,6 +1,6 @@
 {
   "name": "dynamoDbExport2Json",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Convert the output format of the AWS Data Pipeline export for DynamoDB into JSON",
   "main": "index.js",
   "scripts": {
