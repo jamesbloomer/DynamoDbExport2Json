@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+require('../index.js')(process.argv[2], process.argv[3], function(e) {
+    if(e) {
+        console.error(e);
+    } else {
+        console.log("Finished conversion");
+    }
+});
