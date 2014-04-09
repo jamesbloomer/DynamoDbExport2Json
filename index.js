@@ -4,12 +4,17 @@ var es = require("event-stream"),
 module.exports = function(exportFilePath, outputFilePath, done) {
 
     var s = fs.createReadStream(exportFilePath)
-        .pipe(es.replace(String.fromCharCode(3), ':')) // ETX
-        .pipe(es.replace(String.fromCharCode(2), ',')) // STX
-        .pipe(es.replace('{"n":', ''))
-        .pipe(es.replace('{"s":', ''))
-        .pipe(es.replace('}', ''))
+        .pipe(es.replace('{"n":', '{'))
+        .pipe(es.replace('{"s":', '{'))
+        .pipe(es.replace('{"sS":[', '{['))
+        .pipe(es.replace(String.fromCharCode(3) + '{', ':')) // ETX
+        .pipe(es.replace('}' + String.fromCharCode(2), ',')) // STX
+        .pipe(es.replace('["', '['))
+        .pipe(es.replace('"]', ']'))
+        .pipe(es.replace('}","{','},{'))
+        .pipe(es.replace('\\"', '"'))
         .pipe(es.split("\n"))
+        /*
         .pipe(es.mapSync(function(data) {
            var changed = data.replace(/,(.*?):/g, ',"$1":');
            return changed;
@@ -18,6 +23,7 @@ module.exports = function(exportFilePath, outputFilePath, done) {
            var changed = data.replace(/^(.*?):/g, '"$1":');
            return changed;
         }))
+        */
         .pipe(es.mapSync(function(data) {
             if(data.length > 0) {
                 return '{' + data + '}';
