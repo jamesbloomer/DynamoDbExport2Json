@@ -25,7 +25,8 @@
     "url": "https://raw.githubusercontent.com/jamesbloomer/DynamoDbExport2Json/master/LICENSE"
   }],
   "devDependencies": {
-    "mocha": "^1.18.2"
+    "mocha": "^1.18.2",
+    "json5": "*"
   },
   "dependencies": {
     "event-stream": "^3.1.1"
